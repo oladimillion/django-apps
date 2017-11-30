@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  {% load static %}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'bolt/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bolt/css/style.css' %}">
+    <title> Bolt </title>
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+
+      <p class="title">bolt</p>
+      
+      <div class="step"></div>
+
+      <div id="info" class="info hide"></div>
+
+      <div class="chat-box">
+
+        <div id="chat-scroll" class="chat-scroll">
+          {# <div class="chat self"> #}
+          {#   <span class="content"> #}
+          {#     lorem slslkjhdkjhskjd sdkjdklj   #}
+          {#     'lorem slslkjhdkjhskjd sdkjdklj #}
+          {#   </span> #}
+          {#   <span class="time">10:40am</span> #}
+          {# </div> #}
+        </div>
+        {# end of chat-scroll #}
+
+        <div class="chat-form">
+          <input 
+            id="search"
+            name="search"
+            type="text" 
+            maxlength=100
+            value=""
+            placeholder="Say or type something..." 
+          />
+          <span id="send" class="glyphicon glyphicon-send"></span>
+        </div>
+        {# end of chat-form #}
+
+      </div>
+      {# end of chat-box #}
+
+      <div class="author">oladimillion</div>
+
+      <div class="footer">
+        <span id="mic" class="glyphicon glyphicon-ice-lolly"></span>
+        <span id="speaker" class="glyphicon glyphicon-volume-up"></span>
+      </div>
+      {# end of footer #}
+      
+    </div>
+    {# end of wrapper #}
+
+    <script src="{% static 'bolt/js/Element.js' %}"></script>
+    <script src="{% static 'bolt/js/Filter.js' %}"></script>
+    <script src="{% static 'bolt/js/FetchData.js' %}"></script>
+    <script src="{% static 'bolt/js/SpeechtoText.js' %}"></script>
+    <script src="{% static 'bolt/js/Main.js' %}"></script>
+  </body>
+
+</html>
