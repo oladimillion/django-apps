@@ -157,13 +157,18 @@ class Filter {
     }
     else{
       data = this.removeInvalidResult(data)
-      
       if(data[1].length == 1){
         const output = {
           msg: data[2][0], 
           say: data[2][0]
         }
         return output;      
+      } else if(!data[1].length){
+        const output = {
+          msg: "\"" + data[0] + "\" not found", 
+          say: "Please narrow your search"
+        }
+        return output;
       }
 
       // activate speech to text and mic button

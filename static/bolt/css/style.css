@@ -119,12 +119,12 @@ div.wrapper div.chat-box div.chat-scroll::-webkit-scrollbar {
 }
 
 div.wrapper div.chat-box div.chat-scroll::-webkit-scrollbar-thumb {
-  visibility: hidden;
+  /* visibility: hidden; */
   background-color: #949494;
 }
 
 div.wrapper div.chat-box div.chat-scroll::-webkit-scrollbar-thumb:hover {
-  visibility: visible;
+  /* visibility: visible; */
 }
 
 div.wrapper div.chat-box div.chat-scroll div.chat {
