@@ -8,6 +8,10 @@ class Element {
 
     this.showInfo = this.showInfo.bind(this)
     this.hideInfo = this.hideInfo.bind(this)
+    this.getClassProperties = this.getClassProperties.bind(this)
+    this.activateCtrlBtn = this.activateCtrlBtn.bind(this)
+    this.deactivateCtrlBtn = this.deactivateCtrlBtn.bind(this)
+
   }
 
   createChildElement(className, content){

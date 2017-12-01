@@ -1,13 +1,20 @@
 
 class SpeechtoText{
 
-  constructor(SpeechRecognition, element, fetchData, search){
-    this.element = element
+  constructor(SpeechRecognition, fetchData, texttoSpeech){
     this.fetchData = fetchData
-    this.search = search
+    this.element = this.fetchData.element
+    this.search = this.fetchData.search
+    this.elementID = undefined
+    this.running = false
+    this.temp = false
+    this.texttoSpeech = texttoSpeech
+
     this.error = this.error.bind(this);
     this.end = this.end.bind(this);
-    this.elementID = undefined
+    this.start = this.start.bind(this);
+    this.textFromSpeech = this.textFromSpeech.bind(this);
+
     if(SpeechRecognition){
       this.initilize(SpeechRecognition)
       this.available = true
@@ -28,19 +35,27 @@ class SpeechtoText{
   }
 
   end(){
-    this.fetchData.getData()
-    if(this.elementID)
+    if(this.running){
+      this.recognition.start()
+    }
+    else{
       this.element.deactivateCtrlBtn(this.elementID)
-    this.running = false
+    }
+    this.fetchData.getData()
   }
 
   error(e){
-    if(e.error.indexOf("network") != -1){
-      this.element.showInfo("Network Error")
-      if(this.elementID)
-        this.element.deactivateCtrlBtn(this.elementID)
-      this.running = false
+    if (e.error == 'no-speech'){
+      this.element.showInfo("No speech")
     }
+    else if (e.error == 'audio-capture') {
+      this.element.showInfo("No audio input")
+    }
+    else if(e.error == "network"){
+      this.element.showInfo("Network Error")
+    }
+    if(!this.running)
+        this.element.deactivateCtrlBtn(this.elementID)
   }
 
   instance(){
@@ -48,8 +63,9 @@ class SpeechtoText{
   }
 
   start(elementID){
-
     this.elementID = elementID
+    this.search.value = ""
+
 
     if(!this.available){
       this.element.showInfo("Speech to text not supported")
@@ -60,6 +76,12 @@ class SpeechtoText{
       this.recognition.start()
       this.running = true
     }
+    else {
+      this.recognition.stop()
+      this.running = false
+    }
+
+    // this.running = !this.running
 
     return true
   }
@@ -69,16 +91,18 @@ class SpeechtoText{
   }
 
   textFromSpeech(e){
+    this.search.value = ""
+    
     const transcript = Array.from(e.results)
       .map(result => result[0])
       .map(result => result.transcript)
       .join("");
 
-    console.log(transcript)
+    if(!this.texttoSpeech.pause){
+      this.search.value = transcript
+    }
 
-    this.search.value = transcript
-  }
-
+    }
 }
 
 

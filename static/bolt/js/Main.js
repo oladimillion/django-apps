@@ -8,19 +8,27 @@ const info = document.getElementById("info")
 
 
 const element = new Element(chatScroll, info)
-const filter = new Filter(chatScroll, element)
-const fetchData = new FetchData(element, filter, search)
+const filter = new Filter(element)
+const fetchData = new FetchData(filter, search)
+
+const synth = window.speechSynthesis
+const speechSynth = window.SpeechSynthesisUtterance
+const texttoSpeech = new TexttoSpeech(synth, speechSynth, element)
 
 const SpeechRecognition = window.SpeechRecognition
   || window.webkitSpeechRecognition;
+const speechtoText = new SpeechtoText(
+                      SpeechRecognition, 
+                      fetchData, texttoSpeech)
 
-const speechtoText = new SpeechtoText(SpeechRecognition, element, fetchData)
+
+filter.addProperties(speechtoText, texttoSpeech, mic)
+
 
 window.addEventListener("load", (e) => {  
-  search.focus()
   fetchData.welcomeMsg()
+  search.focus()
 })
-
 
 
 function setValue(e){
@@ -37,15 +45,15 @@ search.addEventListener("keyup", (e) => {
 
 sendButton.addEventListener("click", (e) =>{ 
   fetchData.getData()
-});
+})
 
 mic.addEventListener("click", function (e) { 
   element.toggleCtrlBtn(this, speechtoText)
-});
+})
 
 speaker.addEventListener("click", function (e){ 
-  element.toggleCtrlBtn(this)
-});
+  element.toggleCtrlBtn(this, texttoSpeech)
+})
 
 
 

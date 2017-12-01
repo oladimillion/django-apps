@@ -1,16 +1,22 @@
 
 class FetchData{
 
-  constructor(element, filter, search){
-    this.element = element
+  constructor(filter, search){
     this.filter = filter
     this.search = search
+    this.element = this.filter.element
+
+    this.json = this.json.bind(this)
+    this.status = this.status.bind(this)
+    this.debug = this.debug.bind(this)
 
     this.getData = this.getData.bind(this)
     this.wikiSearch = this.wikiSearch.bind(this)
     this.welcomeMsg = this.welcomeMsg.bind(this)
     this.showReponseData = this.showReponseData.bind(this)
     this.showErrorInfo = this.showErrorInfo.bind(this)
+    this.boltMsg = this.boltMsg.bind(this)
+    
   }
 
   debug(data){
@@ -29,7 +35,7 @@ class FetchData{
   wikiSearch(data){
     let _search = encodeURIComponent(data)
     let url = `https://en.wikipedia.org/w/api.php?
-      origin=*&action=opensearch&search=${_search}&limit=20`;
+      origin=*&action=opensearch&search=${_search}`
 
 
     fetch(url)
@@ -44,14 +50,21 @@ class FetchData{
   }
 
   showReponseData(data){
+    let _data = data
 
-    if(typeof data == "object" && !Array.isArray(data))
-      data = data.msg
+    if(typeof _data == "object" && !Array.isArray(_data))
+      _data = _data.msg
 
+    let {msg, say} = this.filter.result(_data)
+    this.boltMsg(msg, say)
 
-    this.element.elementAppendChild("bolt", this.filter.result(data));
+        return data
+  }
+
+  boltMsg(msg, say){
+    this.filter.texttoSpeech.speak(say)
+    this.element.elementAppendChild("bolt", msg)
     this.search.value = ""
-    return data; 
   }
 
   getData(){
@@ -62,20 +75,21 @@ class FetchData{
       return
     }
 
-    this.element.elementAppendChild("self", data);
+    this.element.elementAppendChild("self", data)
 
     if(this.filter.multipleChoice) {
-      this.filter.checkValidInput(data)
-      this.search.value = ""
+      const {msg, say, multipleChoice} = this.filter.checkValidInput(data)
+      this.boltMsg(msg, say)
+      this.filter.multipleChoice = multipleChoice
       return
     }
 
-    this.wikiSearch(data);
+    this.wikiSearch(data)
 
   }
 
   json(res){
-    return res.json();
+    return res.json()
   }
 
   status(res){
