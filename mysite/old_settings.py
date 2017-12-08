@@ -25,7 +25,7 @@ SECRET_KEY = 'p$114vjt&@e$+u0=5pngr+8serty6(bk$v07kl*a^loigr1!p%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["bootloop.herokuapp.com"]
 
 
 # Application definition
