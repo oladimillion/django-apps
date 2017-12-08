@@ -1,3 +1,8 @@
+import Elements from "./Elements"
+import Filter from "./Filter"
+import FetchData from "./FetchData"
+import TexttoSpeech from "./TexttoSpeech"
+import SpeechtoText from "./SpeechtoText"
 
 const sendButton = document.getElementById("send")
 const search = document.getElementById("search")
@@ -7,13 +12,13 @@ const speaker = document.getElementById("speaker")
 const info = document.getElementById("info")
 
 
-const element = new Element(chatScroll, info)
-const filter = new Filter(element)
+const elements = new Elements(chatScroll, info)
+const filter = new Filter(elements)
 const fetchData = new FetchData(filter, search)
 
 const synth = window.speechSynthesis
 const speechSynth = window.SpeechSynthesisUtterance
-const texttoSpeech = new TexttoSpeech(synth, speechSynth, element)
+const texttoSpeech = new TexttoSpeech(synth, speechSynth, elements)
 
 const SpeechRecognition = window.SpeechRecognition
   || window.webkitSpeechRecognition;
@@ -23,7 +28,6 @@ const speechtoText = new SpeechtoText(
 
 
 filter.addProperties(speechtoText, texttoSpeech, mic)
-
 
 window.addEventListener("load", (e) => {  
   fetchData.welcomeMsg()
@@ -48,11 +52,11 @@ sendButton.addEventListener("click", (e) =>{
 })
 
 mic.addEventListener("click", function (e) { 
-  element.toggleCtrlBtn(this, speechtoText)
+  elements.toggleCtrlBtn(this, speechtoText)
 })
 
 speaker.addEventListener("click", function (e){ 
-  element.toggleCtrlBtn(this, texttoSpeech)
+  elements.toggleCtrlBtn(this, texttoSpeech)
 })
 
 

@@ -1,9 +1,11 @@
 
-class SpeechtoText{
+
+export default class SpeechtoText{
+// class SpeechtoText{
 
   constructor(SpeechRecognition, fetchData, texttoSpeech){
     this.fetchData = fetchData
-    this.element = this.fetchData.element
+    this.elements = this.fetchData.elements
     this.search = this.fetchData.search
     this.elementID = undefined
     this.running = false
@@ -39,23 +41,23 @@ class SpeechtoText{
       this.recognition.start()
     }
     else{
-      this.element.deactivateCtrlBtn(this.elementID)
+      this.elements.deactivateCtrlBtn(this.elementID)
     }
     this.fetchData.getData()
   }
 
   error(e){
-    if (e.error == 'no-speech'){
-      this.element.showInfo("No speech")
+    if (e.error == "no-speech"){
+      this.elements.showInfo("No speech")
     }
-    else if (e.error == 'audio-capture') {
-      this.element.showInfo("No audio input")
+    else if (e.error == "audio-capture") {
+      this.elements.showInfo("No audio input")
     }
     else if(e.error == "network"){
-      this.element.showInfo("Network Error")
+      this.elements.showInfo("Network Error")
     }
     if(!this.running)
-        this.element.deactivateCtrlBtn(this.elementID)
+        this.elements.deactivateCtrlBtn(this.elementID)
   }
 
   instance(){
@@ -68,7 +70,7 @@ class SpeechtoText{
 
 
     if(!this.available){
-      this.element.showInfo("Speech to text not supported")
+      this.elements.showInfo("Speech to text not supported")
       return false
     }
 
@@ -82,7 +84,6 @@ class SpeechtoText{
     }
 
     // this.running = !this.running
-
     return true
   }
 
@@ -96,13 +97,13 @@ class SpeechtoText{
     const transcript = Array.from(e.results)
       .map(result => result[0])
       .map(result => result.transcript)
-      .join("");
+      .join("")
 
     if(!this.texttoSpeech.pause){
       this.search.value = transcript
     }
 
-    }
+  }
 }
 
 

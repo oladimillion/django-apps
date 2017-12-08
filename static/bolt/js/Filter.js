@@ -1,10 +1,11 @@
 
-class Filter {
+export default class Filter {
+// class Filter {
 
-  constructor(element){
+  constructor(elements){
     this.multipleChoice = false
     this.dataArray = []
-    this.element = element
+    this.elements = elements
     this.speechtoText = undefined
     this.texttoSpeech = undefined
     this.mic = undefined
@@ -184,7 +185,7 @@ class Filter {
 
   startVoiceCmd(){
       this.speechtoText.start(this.mic)
-      this.element.activateCtrlBtn(this.mic);
+      this.elements.activateCtrlBtn(this.mic);
   }
 }
 

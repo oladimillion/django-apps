@@ -1,10 +1,11 @@
 
-class FetchData{
+export default class FetchData{
+// class FetchData{
 
   constructor(filter, search){
     this.filter = filter
     this.search = search
-    this.element = this.filter.element
+    this.elements = this.filter.elements
 
     this.json = this.json.bind(this)
     this.status = this.status.bind(this)
@@ -46,7 +47,7 @@ class FetchData{
   }
 
   showErrorInfo(data){
-    this.element.showInfo("Network Error")
+    this.elements.showInfo("Network Error")
   }
 
   showReponseData(data){
@@ -63,7 +64,7 @@ class FetchData{
 
   boltMsg(msg, say){
     this.filter.texttoSpeech.speak(say)
-    this.element.elementAppendChild("bolt", msg)
+    this.elements.elementAppendChild("bolt", msg)
     this.search.value = ""
   }
 
@@ -75,7 +76,7 @@ class FetchData{
       return
     }
 
-    this.element.elementAppendChild("self", data)
+    this.elements.elementAppendChild("self", data)
 
     if(this.filter.multipleChoice) {
       const {msg, say, multipleChoice} = this.filter.checkValidInput(data)

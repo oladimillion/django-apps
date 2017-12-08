@@ -1,9 +1,10 @@
 
-class TexttoSpeech{
-  constructor(synth, speechSynth, element){
+export default class TexttoSpeech{
+// class TexttoSpeech{
+  constructor(synth, speechSynth, elements){
     this.synth = synth
     this.speechSynth = speechSynth
-    this.element = element
+    this.elements = elements
 
     this.running = false
     this.pause = false
@@ -47,7 +48,7 @@ class TexttoSpeech{
   start(elementID){
 
     if(!this.available){
-      this.element.showInfo("Text to speech not supported")
+      this.elements.showInfo("Text to speech not supported")
       return false
     }
 
@@ -55,6 +56,5 @@ class TexttoSpeech{
 
     return true
    }
-
 
 }

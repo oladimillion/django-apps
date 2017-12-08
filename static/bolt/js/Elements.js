@@ -1,5 +1,5 @@
 
-class Element {
+export default class Elements {
 
   constructor(parentElement, info){
     this.parentElement = parentElement

@@ -26,7 +26,7 @@ data.append("post", JSON.stringify(payload));
 function post(){
   fetch(url, {
   method: "post",
-  body: data
+    body: data
   })
   .then(status)
   .then(json)

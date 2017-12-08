@@ -1,12 +1,13 @@
 
-# BOLT
+## BOLT
 
 > Bolt is a mini wikipedia. It allows users to type in
-> their search keyword and get quick and concise response.
+> their search keyword and get quick and concise definition.
 
 > Bolt supports voice commands, i.e. speech-to-text and text-to-speech commands
+> (note: your browser must features for them to work)
 
-## Running app Locally
+### Running app Locally
 
 ```bash
   $ git clone https://github.com/oladimillion/django-apps.git
@@ -16,19 +17,11 @@
   $ pip install -r requirements.txt
 ```
 
-```bash
-  $ python manage.py migrate
-```
+### Open below link in a web browser
+  **visit [http://localhost:8000/bolt/](http://localhost:8000/bolt/)**
 
-```bash
-  $ python manage.py runserver
-```
-
-## Open below link in your browser
-  visit [ http://localhost:8000/bolt/ ] 
-
-## Author
+### Author
   **Oladimeji Akande** 
 
-## License
-  None.
+### License
+  **None.**
