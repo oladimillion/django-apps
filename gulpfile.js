@@ -22,7 +22,7 @@ gulp.task('styles', () => {
 
 
 gulp.task('javascript', () => {
-  return browserify('./static/bolt/js/Main.js')
+  return browserify('./static/bolt/js/src/Main.js')
     .transform(babelify, {presets: ["es2015"]})
     .bundle()
     .pipe(source('all.js'))
