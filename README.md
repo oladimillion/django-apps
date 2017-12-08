@@ -5,7 +5,7 @@
 > their search keyword and get quick and concise definition.
 
 > Bolt supports voice commands, i.e. speech-to-text and text-to-speech commands
-> (note: your browser must features for them to work)
+> (note: your browser must support these features for them to work)
 
 ### Running app Locally
 
