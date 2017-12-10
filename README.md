@@ -7,7 +7,10 @@
 > Bolt supports voice commands, i.e. speech-to-text and text-to-speech commands
 > (note: your browser must support these features for them to work)
 
-### Running app Locally
+### Visit below link
+  **[https://bootloop.herokuapp.com](https://bootloop.herokuapp.com)**
+
+### Or run app locally
 
 ```bash
   $ git clone https://github.com/oladimillion/django-apps.git
